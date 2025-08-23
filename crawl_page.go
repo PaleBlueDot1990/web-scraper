@@ -12,6 +12,10 @@ func (cfg *config) crawlPage(rawCurrentURL string) {
 		cfg.wg.Done()
 	}()
 
+	if cfg.hasCrawledMaxNumberOfPages() {
+		return 
+	}
+
 	if !strings.HasPrefix(rawCurrentURL, cfg.rawBaseURL) {
 		return
 	}
