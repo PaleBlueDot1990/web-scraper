@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"os"
+	"fmt"
 )
 
 func main() {
@@ -11,12 +11,24 @@ func main() {
 		fmt.Println("no website provided")
 		os.Exit(1)
 	}
-
 	if len(arguments) > 1 {
 		fmt.Println("too many arguments provided")
 		os.Exit(1)
 	}
-
 	baseURL := arguments[0]
-	fmt.Printf("starting crawl of %s", baseURL)
+	
+	fmt.Println("----------------------------------------------------------------------")
+	fmt.Printf("starting crawl of %s\n", baseURL)
+	fmt.Println("----------------------------------------------------------------------")
+
+	crawledPages := make(map[string]int)
+	crawlPage(baseURL, baseURL, crawledPages)
+
+	fmt.Println("----------------------------------------------------------------------")
+	fmt.Printf("finished crawling %s\n", baseURL)
+	fmt.Println("----------------------------------------------------------------------")
+	
+	for key, val := range crawledPages {
+		fmt.Printf("%s page is crawled %d times\n", key, val)
+	}
 }
