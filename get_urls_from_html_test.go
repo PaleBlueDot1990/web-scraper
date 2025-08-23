@@ -85,6 +85,18 @@ func TestGetURLsFromHTML(t *testing.T) {
 `,
 			expected: []string{"https://deeplynestedlinks.com/example"},
 		},
+		{
+			name:     "Get_URLs_From_HTML_TC4",
+			inputURL: "https://blog.boot.dev",
+			inputBody: `
+<html>
+	<body>
+		<h1>Welcome to My Site</h1>
+	</body>
+</html>
+`,
+			expected: nil,
+		},
 	}
 
 	for i, tc := range tests {
